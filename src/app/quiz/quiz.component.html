@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="progresso-bar">
+    <div class="progresso-fill" [style.width.%]="progresso"></div>
+  </div>
+
+  <p class="contador">Pergunta {{ indiceAtual + 1 }} de {{ perguntas.length }}</p>
+  <h2 class="pergunta">{{ perguntaAtual.texto }}</h2>
+
+  <div class="opcoes">
+    <button
+      *ngFor="let opcao of perguntaAtual.opcoes; let i = index"
+      class="opcao"
+      [class.correta]="respondeu && i === perguntaAtual.respostaCorreta"
+      [class.errada]="respondeu && i === respostaSelecionada && i !== perguntaAtual.respostaCorreta"
+      (click)="selecionar(i)"
+      [disabled]="respondeu">
+      {{ opcao }}
+    </button>
+  </div>
+
+  <button class="btn-proxima" *ngIf="respondeu" (click)="proxima()">
+    {{ indiceAtual < perguntas.length - 1 ? 'Próxima →' : 'Ver resultado →' }}
+  </button>
+</div>

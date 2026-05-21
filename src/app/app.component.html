@@ -1,0 +1,11 @@
+<app-quiz
+  *ngIf="!finalizado"
+  (quizFinalizado)="onFinalizar($event)">
+</app-quiz>
+
+<app-resultado
+  *ngIf="finalizado"
+  [pontuacao]="pontuacao"
+  [total]="5"
+  (reiniciar)="onReiniciar()">
+</app-resultado>
